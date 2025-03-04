@@ -1,0 +1,13 @@
+package oleborn.robotsurvivalist;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class RobotSurvivalistApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
