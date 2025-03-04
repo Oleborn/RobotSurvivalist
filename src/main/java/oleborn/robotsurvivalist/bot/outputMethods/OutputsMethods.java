@@ -1,4 +1,4 @@
-package oleborn.robotsurvivalist.outputMethods;
+package oleborn.robotsurvivalist.bot.outputMethods;
 
 import oleborn.robotsurvivalist.bot.Bot;
 import org.springframework.stereotype.Component;

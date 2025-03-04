@@ -1,4 +1,4 @@
-package oleborn.robotsurvivalist.outputMethods;
+package oleborn.robotsurvivalist.bot.outputMethods;
 
 import lombok.NoArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;

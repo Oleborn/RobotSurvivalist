@@ -1,7 +1,10 @@
 package oleborn.robotsurvivalist.bot;
 
+import jakarta.annotation.Resource;
+import oleborn.robotsurvivalist.bot.updatehandler.UpdateHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -14,6 +17,10 @@ public class Bot extends TelegramLongPollingBot {
 
     @Value("${taskbot.bot-token}")
     private String botToken;
+
+    @Resource
+    @Lazy
+    private UpdateHandler updateHandler;
 
 
     @Override
@@ -29,6 +36,7 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
 
+        updateHandler.handler(update);
 
     }
 
