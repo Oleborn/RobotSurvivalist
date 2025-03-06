@@ -1,8 +1,8 @@
-package oleborn.robotsurvivalist.game.gamedictionary;
+package oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import oleborn.robotsurvivalist.game.gamedictionary.textDictionary.DescriptionMainCarriageModules;
+import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdictionary.DescriptionMainCarriageModules;
 
 @Getter
 @RequiredArgsConstructor

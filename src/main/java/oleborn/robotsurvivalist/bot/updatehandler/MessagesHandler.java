@@ -1,7 +1,7 @@
 package oleborn.robotsurvivalist.bot.updatehandler;
 
 import lombok.RequiredArgsConstructor;
-import oleborn.robotsurvivalist.utils.dictionary.TextMessages;
+import oleborn.robotsurvivalist.utils.historydictionary.TextMessages;
 import oleborn.robotsurvivalist.utils.UtilsMethods;
 import oleborn.robotsurvivalist.bot.outputMethods.OutputsMethods;
 import org.springframework.stereotype.Component;

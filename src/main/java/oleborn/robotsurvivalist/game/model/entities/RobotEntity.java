@@ -1,7 +1,7 @@
 package oleborn.robotsurvivalist.game.model.entities;
 
 import lombok.*;
-import oleborn.robotsurvivalist.game.gamedictionary.*;
+import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,13 +23,15 @@ public class RobotEntity {
     private Integer sumWeight;
     private Integer sumCapacity;
     private Integer sumDurability;
+    private Integer countFuel;
 
     //Модули
     private ControlCenter controlCenter;
     private CommunicationAntenna antenna;
-    private EngineModule engine;
+    private Engine engine;
     private CargoCompartment compartment;
     private Chassis chassis;
+    private FuelTanks fuelTanks;
 
     //Модули взаимодействия
     private List<MainCarriageModules> mainCarriageModulesList;

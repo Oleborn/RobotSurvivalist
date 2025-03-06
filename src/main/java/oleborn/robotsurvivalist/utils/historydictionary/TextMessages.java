@@ -1,4 +1,4 @@
-package oleborn.robotsurvivalist.utils.dictionary;
+package oleborn.robotsurvivalist.utils.historydictionary;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

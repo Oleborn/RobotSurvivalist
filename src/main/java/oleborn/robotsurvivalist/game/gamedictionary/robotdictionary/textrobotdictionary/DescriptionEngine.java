@@ -1,4 +1,4 @@
-package oleborn.robotsurvivalist.game.gamedictionary.textDictionary;
+package oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdictionary;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +12,11 @@ public enum DescriptionEngine {
             Позволяет преодолеть клетку карты за 5 минут.
             
             Характеристики:
-            - Масса - %n кг.
-            - Прочность - %n ед.
-            - Занимаемый объем - %n ед.
-            - Скорость - %d клетки в минуту.
+                - Масса - 40кг
+                - Прочность - 25 ед
+                - Занимаемый объем - 100 ед
+                - Скорость - 0.2 клетки в минуту
+                - Расход топлива - 5 ед на клетку.
             """);
 
     private final String description;

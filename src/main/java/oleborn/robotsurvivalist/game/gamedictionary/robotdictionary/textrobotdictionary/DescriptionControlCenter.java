@@ -1,4 +1,4 @@
-package oleborn.robotsurvivalist.game.gamedictionary.textDictionary;
+package oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdictionary;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,12 @@ public enum DescriptionControlCenter {
 
     DEFAULT_CONTROL_CENTER("""
             Стандартный модуль управления начального уровня, из стартового набора любого робота. Ничего не стоит. 
-            Имеет встроенную память на 3 команды.            
+            
+            Характеристики:
+                - Масса - 20кг
+                - Прочность - 10 ед
+                - Занимаемый объем - 20 ед
+                - Объем записываемых команд - 1 
             """);
 
     private final String description;

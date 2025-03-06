@@ -1,10 +1,8 @@
-package oleborn.robotsurvivalist.game.gamedictionary;
+package oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import oleborn.robotsurvivalist.game.gamedictionary.textDictionary.DescriptionChassis;
-
-import java.util.List;
+import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdictionary.DescriptionChassis;
 
 @Getter
 @RequiredArgsConstructor
@@ -18,6 +16,7 @@ public enum Chassis {
             false,
             1,
             0,
+            0,
             DescriptionChassis.DEFAULT_WHEELS_CHASSIS
     );
 
@@ -28,6 +27,7 @@ public enum Chassis {
     private final Boolean abilityToFloat;
     private final Integer countOfMainCarriages;
     private final Integer countOfAuxiliaryCarriages;
+    private final Integer price;
     private final DescriptionChassis description;
 
 
