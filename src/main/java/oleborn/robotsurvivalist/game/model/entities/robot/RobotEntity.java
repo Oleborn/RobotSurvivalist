@@ -1,8 +1,9 @@
-package oleborn.robotsurvivalist.game.model.entities;
+package oleborn.robotsurvivalist.game.model.entities.robot;
 
 import lombok.*;
 import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot.*;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,9 +15,10 @@ public class RobotEntity {
 
     // Персонализация
     private UUID uuid;
-    private Long ownerId;
+    private Long OperatorId;
     private String nameModel;
     private String descriptionModel;
+    private ZonedDateTime creationDate;
 
     //Текущие, изменяемые свойства
     private Integer[][] coordinates;
