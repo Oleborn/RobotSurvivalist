@@ -2,6 +2,7 @@ package oleborn.robotsurvivalist.game.model.entities.robot;
 
 import lombok.*;
 import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot.*;
+import oleborn.robotsurvivalist.game.model.entities.operator.Operator;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -15,10 +16,13 @@ public class RobotEntity {
 
     // Персонализация
     private UUID uuid;
-    private Long OperatorId;
+    private Operator operator;
     private String nameModel;
     private String descriptionModel;
     private ZonedDateTime creationDate;
+
+    //технические данные
+    private ZonedDateTime modificationDate;
 
     //Текущие, изменяемые свойства
     private Integer[][] coordinates;
