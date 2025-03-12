@@ -1,4 +1,4 @@
-package oleborn.robotsurvivalist.game.model.entities.map;
+package oleborn.robotsurvivalist.game.programlogics.model.entities.map;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,10 +8,10 @@ import lombok.Setter;
 import oleborn.robotsurvivalist.game.gamedictionary.mapdictionary.buildingdictionary.Building;
 import oleborn.robotsurvivalist.game.gamedictionary.mapdictionary.materialsdictionary.Materials;
 import oleborn.robotsurvivalist.game.gamedictionary.mapdictionary.resourcesdictionary.Resource;
-import oleborn.robotsurvivalist.game.model.entities.enemy.interfaces.Enemy;
-import oleborn.robotsurvivalist.game.model.entities.robot.RobotEntity;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.robot.RobotEntity;
 
 import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -23,7 +23,7 @@ public class CellMap {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "x_coord")
     private Integer XCoordinate;
@@ -35,8 +35,8 @@ public class CellMap {
 //    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 //    private List<List<Enemy>> enemies;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private List<RobotEntity> robots;
+    @OneToMany(mappedBy = "cellMapId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<RobotEntity> robots;
 
     //Объекты на карте
     @ElementCollection

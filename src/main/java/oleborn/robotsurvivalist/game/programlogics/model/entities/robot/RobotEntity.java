@@ -1,10 +1,10 @@
-package oleborn.robotsurvivalist.game.model.entities.robot;
+package oleborn.robotsurvivalist.game.programlogics.model.entities.robot;
 
 import jakarta.persistence.*;
 import lombok.*;
 import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot.*;
-import oleborn.robotsurvivalist.game.model.entities.map.CellMap;
-import oleborn.robotsurvivalist.game.model.entities.operator.Operator;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.map.CellMap;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.operator.Operator;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -17,6 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "robots")
+@ToString
 public class RobotEntity {
 
     // Персонализация
@@ -24,9 +25,7 @@ public class RobotEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 
-    @ManyToOne
-    @JoinColumn(name = "operator_id")
-    private Operator operator;
+    private Long operatorId;
 
     @Column(name = "name_model")
     private String nameModel;
@@ -85,12 +84,6 @@ public class RobotEntity {
     @Enumerated(EnumType.STRING)
     private List<AuxiliaryCarriageModules> auxiliaryCarriageModulesList;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "maps_robots",
-            joinColumns = @JoinColumn(name = "robot_entity_uuid"),
-            inverseJoinColumns = @JoinColumn (name = "cell_map_id")
-    )
-    private Set<CellMap> cellMapSet;
+    private Long cellMapId;
 
 }

@@ -1,12 +1,9 @@
-package oleborn.robotsurvivalist.game.model.entities.operator;
+package oleborn.robotsurvivalist.game.programlogics.model.entities.operator;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import oleborn.robotsurvivalist.game.gamedictionary.mapdictionary.basedictionary.Technology;
-import oleborn.robotsurvivalist.game.model.entities.robot.RobotEntity;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.robot.RobotEntity;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -17,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "operators")
+@ToString
 public class Operator {
 
     //Статические данные
@@ -35,7 +33,7 @@ public class Operator {
     @Column(name = "money")
     private Long countMoney;
 
-    @OneToMany(mappedBy = "operator")
+    @OneToMany(mappedBy = "operatorId", cascade = CascadeType.ALL)
     private List<RobotEntity> robots;
 
     @ElementCollection
@@ -44,6 +42,6 @@ public class Operator {
     private List<Technology> researchTechnologies;
 
     @Column(name = "reputation")
-    private int reputation;
+    private Integer reputation;
 
 }

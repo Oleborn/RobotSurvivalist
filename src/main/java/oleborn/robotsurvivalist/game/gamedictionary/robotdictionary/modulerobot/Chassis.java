@@ -9,9 +9,9 @@ import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdic
 public enum Chassis {
 
     DEFAULT_WHEELS_CHASSIS(
-            150,
+            200,
             50,
-            400,
+            500,
             0.2,
             false,
             1,
