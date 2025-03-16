@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageTe
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -33,6 +34,20 @@ public class OutputsMethods extends Bot {
     }
 
     public void outputMessage(long id, String text, InlineKeyboardMarkup kb) {
+        SendMessage ms = SendMessage.builder()
+                .chatId(id)
+                .parseMode("HTML")
+                .text(text)
+                .replyMarkup(kb)
+                .build();
+        try {
+            execute(ms);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void outputMessage(long id, String text, ReplyKeyboardMarkup kb) {
         SendMessage ms = SendMessage.builder()
                 .chatId(id)
                 .parseMode("HTML")

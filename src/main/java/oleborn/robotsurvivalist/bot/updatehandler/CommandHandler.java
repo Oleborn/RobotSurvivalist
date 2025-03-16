@@ -21,11 +21,10 @@ public class CommandHandler implements Handler {
     public void handleUpdate(Update update) {
         if(update.getMessage().getText().equals("/start")) {
             outputsMethods.outputMessage(
+                    //нужно проверять есть ли такой игрок в бд
                     UtilsMethods.searchId(update),
                     CentralHistoryGame.START_GAME_HISTORY.getText(),
-                    new InlineKeyboardBuilder()
-                            .addButton("Дальше", "next_history_1")
-                            .build()
+                    CentralHistoryGame.START_GAME_HISTORY.getKeyboard()
             );
         }
     }

@@ -2,6 +2,7 @@ package oleborn.robotsurvivalist.game.programlogics.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import oleborn.robotsurvivalist.game.gamedictionary.operatordictionary.OperatorMoveStatus;
 import oleborn.robotsurvivalist.game.programlogics.mapper.OperatorMapper;
 import oleborn.robotsurvivalist.game.programlogics.model.dto.OperatorDto;
 import oleborn.robotsurvivalist.game.programlogics.model.dto.RobotEntityDto;
@@ -33,6 +34,16 @@ public class OperatorService {
         }
         return null;
 
+    }
+
+    public void setupStatus(Update update, OperatorMoveStatus status) {
+        Optional<Operator> byId = operatorRepository.findById(UtilsMethods.searchId(update));
+        if (byId.isPresent()) {
+            Operator operator = byId.get();
+            operator.setMoveStatus(status);
+            Operator save = operatorRepository.save(operator);
+            System.out.println("Operator saved: " + save);
+        }
     }
 
     private OperatorDto createStartOperator(Update update) {

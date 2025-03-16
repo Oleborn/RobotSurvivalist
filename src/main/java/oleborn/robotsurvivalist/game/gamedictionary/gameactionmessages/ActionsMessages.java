@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum ActionsMessages {
 
     FIRST_RUN_ROBOT("""
-            <code>«Первый запуск робота.</code>» 
+            <code>«Первый запуск робота</code>»
             
             <code>«Все системы активны»</code>
             

@@ -7,11 +7,14 @@ import oleborn.robotsurvivalist.game.programlogics.mapper.OperatorMapper;
 import oleborn.robotsurvivalist.game.programlogics.mapper.RobotMapper;
 import oleborn.robotsurvivalist.game.programlogics.model.dto.OperatorDto;
 import oleborn.robotsurvivalist.game.programlogics.model.dto.RobotEntityDto;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.robot.RobotEntity;
 import oleborn.robotsurvivalist.game.programlogics.repository.OperatorRepository;
 import oleborn.robotsurvivalist.game.programlogics.repository.RobotRepository;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.awt.*;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -67,7 +70,8 @@ public class RobotService {
                 +engine.getMass()
                 +compartment.getWeightWithoutLoad()
                 +fuelTanks.getMassWithoutFuel()
-                +quantityFuel+massStorage;
+                +quantityFuel
+               +massStorage;
     }
 
     private int sumCapacity(ControlCenter controlCenter,

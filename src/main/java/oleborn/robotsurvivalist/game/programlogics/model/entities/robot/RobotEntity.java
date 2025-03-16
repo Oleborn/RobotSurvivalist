@@ -84,6 +84,7 @@ public class RobotEntity {
     @Enumerated(EnumType.STRING)
     private List<AuxiliaryCarriageModules> auxiliaryCarriageModulesList;
 
+    @Column(name = "cellmap_id")
     private Long cellMapId;
 
 }

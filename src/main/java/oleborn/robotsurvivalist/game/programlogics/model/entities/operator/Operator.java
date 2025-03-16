@@ -2,7 +2,8 @@ package oleborn.robotsurvivalist.game.programlogics.model.entities.operator;
 
 import jakarta.persistence.*;
 import lombok.*;
-import oleborn.robotsurvivalist.game.gamedictionary.mapdictionary.basedictionary.Technology;
+import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.admroom.scientistsroom.Technology;
+import oleborn.robotsurvivalist.game.gamedictionary.operatordictionary.OperatorMoveStatus;
 import oleborn.robotsurvivalist.game.programlogics.model.entities.robot.RobotEntity;
 
 import java.time.ZonedDateTime;
@@ -21,6 +22,8 @@ public class Operator {
     @Id
     private Long id;
     private String login;
+
+    private OperatorMoveStatus moveStatus;
 
     @Column(name = "created_date")
     private ZonedDateTime createdDate;

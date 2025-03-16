@@ -2,7 +2,6 @@ package oleborn.robotsurvivalist.game.programlogics.model.dto;
 
 import lombok.Builder;
 import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot.*;
-import oleborn.robotsurvivalist.game.programlogics.model.entities.map.CellMap;
 
 import java.time.ZonedDateTime;
 import java.util.List;
