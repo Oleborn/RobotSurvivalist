@@ -1,8 +1,9 @@
-package oleborn.robotsurvivalist.bot.updatehandler;
+package oleborn.robotsurvivalist.bot.updatehandler.callbackmethods;
 
 import lombok.RequiredArgsConstructor;
 import oleborn.robotsurvivalist.bot.outputMethods.OutputsMethods;
 import oleborn.robotsurvivalist.bot.outputMethods.ReplyKeyboardBuilder;
+import oleborn.robotsurvivalist.bot.updatehandler.Handler;
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.admroom.console.CentralConsoleDictionary;
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.admroom.manufacture.WorkshopDictionary;
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.admroom.office.OperatorsOfficeDictionary;

@@ -1,6 +1,7 @@
 package oleborn.robotsurvivalist.bot.updatehandler;
 
 import lombok.RequiredArgsConstructor;
+import oleborn.robotsurvivalist.bot.updatehandler.callbackmethods.CallbackQueryHandler;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
