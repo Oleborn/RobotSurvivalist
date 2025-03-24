@@ -33,6 +33,8 @@ public enum RobotConnectionTerminalDictionary {
 
     private final String text;
     private final InlineKeyboardMarkup buttons = new InlineKeyboardBuilder()
+            .addButton("Подключение к роботу", "robot_connect")
+            .nextRow()
             .addButton("Выйти в общий коридор", "go_to_corridor")
             .build();
 

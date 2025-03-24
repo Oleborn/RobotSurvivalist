@@ -10,4 +10,6 @@ public interface RobotRepository extends JpaRepository<RobotEntity, UUID> {
 
     List<RobotEntity> findByOperatorId(Long operatorId);
 
+    void removeByOperatorId(Long operatorId);
+
 }

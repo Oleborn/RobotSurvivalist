@@ -5,10 +5,8 @@ import lombok.RequiredArgsConstructor;
 import oleborn.robotsurvivalist.game.gamedictionary.operatordictionary.OperatorMoveStatus;
 import oleborn.robotsurvivalist.game.programlogics.mapper.OperatorMapper;
 import oleborn.robotsurvivalist.game.programlogics.model.dto.OperatorDto;
-import oleborn.robotsurvivalist.game.programlogics.model.dto.RobotEntityDto;
 import oleborn.robotsurvivalist.game.programlogics.model.entities.operator.Operator;
 import oleborn.robotsurvivalist.game.programlogics.repository.OperatorRepository;
-import oleborn.robotsurvivalist.game.programlogics.repository.RobotRepository;
 import oleborn.robotsurvivalist.utils.UtilsMethods;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -24,7 +22,7 @@ public class OperatorService {
 
     private final OperatorRepository operatorRepository;
     private final OperatorMapper operatorMapper;
-    private final RobotService robotService;
+    private final RobotServiceImpl robotService;
 
     public OperatorDto saveOperator(Update update) {
         Optional<Operator> byId = operatorRepository.findById(UtilsMethods.searchId(update));
@@ -50,6 +48,7 @@ public class OperatorService {
         return new OperatorDto(
                 update.getCallbackQuery().getFrom().getId(),
                 update.getCallbackQuery().getFrom().getUserName(),
+                OperatorMoveStatus.IN_CENTRAL_CORRIDOR,
                 ZonedDateTime.now(),
                 ZonedDateTime.now(),
                 1000L,

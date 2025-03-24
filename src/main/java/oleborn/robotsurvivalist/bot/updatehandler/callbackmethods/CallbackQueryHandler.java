@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import oleborn.robotsurvivalist.bot.outputMethods.OutputsMethods;
 import oleborn.robotsurvivalist.bot.outputMethods.ReplyKeyboardBuilder;
 import oleborn.robotsurvivalist.bot.updatehandler.Handler;
+import oleborn.robotsurvivalist.bot.updatehandler.callbackmethods.actionrobot.ActionRobotCommands;
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.admroom.console.CentralConsoleDictionary;
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.admroom.manufacture.WorkshopDictionary;
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.admroom.office.OperatorsOfficeDictionary;
@@ -29,6 +30,7 @@ public class CallbackQueryHandler implements Handler {
 
     private final OutputsMethods outputsMethods;
     private final OperatorService operatorService;
+    private final ActionRobotCommands actionRobotCommands;
 
     @Override
     public void handleUpdate(Update update) {
@@ -37,6 +39,9 @@ public class CallbackQueryHandler implements Handler {
 
         if (update.getCallbackQuery().getData().startsWith("go_to")) {
             processingOfMoveInBase(update, id);
+        }
+        if (update.getCallbackQuery().getData().startsWith("robot")) {
+            actionRobotCommands.robotCommand(update, id);
         }
 
 

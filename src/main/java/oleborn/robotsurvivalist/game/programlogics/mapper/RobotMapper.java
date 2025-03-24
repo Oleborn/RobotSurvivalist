@@ -15,4 +15,6 @@ public interface RobotMapper {
     List<RobotEntityDto> toDtos(List<RobotEntity> robotEntities);
 
     RobotEntityDto toDto(RobotEntity robot);
+
+    RobotEntity toEntity(RobotEntityDto robotDto);
 }
