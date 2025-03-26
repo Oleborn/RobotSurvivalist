@@ -2,7 +2,6 @@ package oleborn.robotsurvivalist.bot.updatehandler.callbackmethods;
 
 import lombok.RequiredArgsConstructor;
 import oleborn.robotsurvivalist.bot.outputMethods.OutputsMethods;
-import oleborn.robotsurvivalist.bot.outputMethods.ReplyKeyboardBuilder;
 import oleborn.robotsurvivalist.bot.updatehandler.Handler;
 import oleborn.robotsurvivalist.bot.updatehandler.callbackmethods.actionrobot.ActionRobotCommands;
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.admroom.console.CentralConsoleDictionary;
@@ -13,11 +12,8 @@ import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.admroom.store
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.cabins.PersonalQuartersDictionary;
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.cabins.RobotConnectionTerminalDictionary;
 import oleborn.robotsurvivalist.game.gamedictionary.basedictionary.centalcorridor.CentralCorridorDictionary;
-import oleborn.robotsurvivalist.game.gamedictionary.gameactionmessages.ActionsMessages;
 import oleborn.robotsurvivalist.game.gamedictionary.historygame.CentralHistoryGame;
 import oleborn.robotsurvivalist.game.gamedictionary.operatordictionary.OperatorMoveStatus;
-import oleborn.robotsurvivalist.game.programlogics.model.dto.OperatorDto;
-import oleborn.robotsurvivalist.game.programlogics.model.dto.RobotEntityDto;
 import oleborn.robotsurvivalist.game.programlogics.service.OperatorService;
 import oleborn.robotsurvivalist.utils.UtilsMethods;
 import org.springframework.stereotype.Component;
@@ -41,7 +37,7 @@ public class CallbackQueryHandler implements Handler {
             processingOfMoveInBase(update, id);
         }
         if (update.getCallbackQuery().getData().startsWith("robot")) {
-            actionRobotCommands.robotCommand(update, id);
+            actionRobotCommands.robotCommandQBC(update, id);
         }
 
 
@@ -78,46 +74,48 @@ public class CallbackQueryHandler implements Handler {
 
                 operatorService.saveOperator(update);
             }
-            case "start_robot" -> {
-                outputsMethods.outputMessage(
-                        UtilsMethods.searchId(update),
-                        CentralHistoryGame.ROBOT_FIRST_STARTED.getText(),
-                        CentralHistoryGame.ROBOT_FIRST_STARTED.getKeyboard());
-            }
-            case "start_game" -> {
-                OperatorDto operator = operatorService.saveOperator(update);
-                RobotEntityDto robot = operator.robots().getFirst();
-                outputsMethods.outputMessage(
-                        UtilsMethods.searchId(update),
-                        ActionsMessages.FIRST_RUN_ROBOT.getMessage().formatted(
-                             robot.nameModel(),
-                             robot.descriptionModel(),
-                             robot.XCoordinate(),
-                             robot.YCoordinate(),
-                             robot.sumWeight(),
-                             robot.chassis().getSupportedWeight(),
-                             robot.sumCapacity(),
-                             robot.chassis().getOccupiedCapacity(),
-                             robot.sumDurability(),
-                                robot.countFuel(),
-                                robot.fuelTanks().getFuelCapacity(),
-                                robot.controlCenter().name(),
-                                robot.antenna().name(),
-                                robot.engine().name(),
-                                robot.compartment().name(),
-                                robot.fuelTanks().name(),
-                                robot.chassis().name(),
-                                robot.chassis().getCountOfMainCarriages(),
-                                robot.mainCarriageModulesList().getFirst()
-                        ),
-                        new ReplyKeyboardBuilder()
-                                .addButton(" ").addButton("пойти на север").addButton(" ")
-                                .nextRow()
-                                .addButton("Пойти на запад").addButton(" ").addButton("Пойти на восток")
-                                .nextRow()
-                                .addButton(" ").addButton("пойти на юг").addButton(" ")
-                                .build());
-            }
+
+
+//            case "start_robot" -> {
+//                outputsMethods.outputMessage(
+//                        UtilsMethods.searchId(update),
+//                        CentralHistoryGame.ROBOT_FIRST_STARTED.getText(),
+//                        CentralHistoryGame.ROBOT_FIRST_STARTED.getKeyboard());
+//            }
+//            case "start_game" -> {
+//                OperatorDto operator = operatorService.saveOperator(update);
+//                RobotEntityDto robot = operator.robots().getFirst();
+//                outputsMethods.outputMessage(
+//                        UtilsMethods.searchId(update),
+//                        ActionsMessages.FIRST_RUN_ROBOT.getMessage().formatted(
+//                             robot.nameModel(),
+//                             robot.descriptionModel(),
+//                             robot.XCoordinate(),
+//                             robot.YCoordinate(),
+//                             robot.sumWeight(),
+//                             robot.chassis().getSupportedWeight(),
+//                             robot.sumCapacity(),
+//                             robot.chassis().getOccupiedCapacity(),
+//                             robot.sumDurability(),
+//                                robot.currentFuel(),
+//                                robot.fuelTanks().getFuelCapacity(),
+//                                robot.controlCenter().name(),
+//                                robot.antenna().name(),
+//                                robot.engine().name(),
+//                                robot.compartment().name(),
+//                                robot.fuelTanks().name(),
+//                                robot.chassis().name(),
+//                                robot.chassis().getCountOfMainCarriages(),
+//                                robot.mainCarriageModulesList().getFirst()
+//                        ),
+//                        new ReplyKeyboardBuilder()
+//                                .addButton(" ").addButton("пойти на север").addButton(" ")
+//                                .nextRow()
+//                                .addButton("Пойти на запад").addButton(" ").addButton("Пойти на восток")
+//                                .nextRow()
+//                                .addButton(" ").addButton("пойти на юг").addButton(" ")
+//                                .build());
+//            }
         }
     }
 
@@ -182,7 +180,7 @@ public class CallbackQueryHandler implements Handler {
             case "go_to_terminal" -> {
                 outputsMethods.outputMessage(
                         id,
-                        RobotConnectionTerminalDictionary.getRandomDictionary(),
+                        RobotConnectionTerminalDictionary.getRandomDictionary().formatted(RobotConnectionTerminalDictionary.commandGetRobots),
                         RobotConnectionTerminalDictionary.DESCRIPTION_1.getButtons()
                 );
                 operatorService.setupStatus(update, OperatorMoveStatus.IN_TERMINAL);

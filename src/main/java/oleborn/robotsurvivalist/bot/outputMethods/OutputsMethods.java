@@ -1,6 +1,7 @@
 package oleborn.robotsurvivalist.bot.outputMethods;
 
 import oleborn.robotsurvivalist.bot.Bot;
+import oleborn.robotsurvivalist.game.programlogics.model.dto.RobotEntityDto;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -16,6 +17,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class OutputsMethods extends Bot {
@@ -187,13 +189,24 @@ public class OutputsMethods extends Bot {
         }
     }
 
-
-    public InlineKeyboardMarkup createButtonInColumn(List<String> list, String nameField, String command) {
+    public InlineKeyboardMarkup createButtonInColumnToRobotEntityDto(List<RobotEntityDto> list, String nameField, String command) {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
-        for (int i = 0; i < list.size(); i++) {
-            var next = createButtonMenuForInline(nameField + list.get(i), list.get(i) + "_" + command);
+        for (RobotEntityDto s : list) {
+            var next = createButtonMenuForInline(nameField + s.nameModel(), command + "_" + s.uuid());
+            keyboard.add(List.of(next));
+        }
+        markup.setKeyboard(keyboard);
+        return markup;
+    }
+
+    public InlineKeyboardMarkup createButtonInColumnToStringList(List<String> list, String nameField, String command) {
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        for (String s : list) {
+            var next = createButtonMenuForInline(nameField + s, command + "_" + s);
             keyboard.add(List.of(next));
         }
         markup.setKeyboard(keyboard);

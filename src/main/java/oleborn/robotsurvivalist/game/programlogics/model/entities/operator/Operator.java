@@ -8,6 +8,7 @@ import oleborn.robotsurvivalist.game.programlogics.model.entities.robot.RobotEnt
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Setter
 @Getter
@@ -46,5 +47,8 @@ public class Operator {
 
     @Column(name = "reputation")
     private Integer reputation;
+
+    @Column(name = "active_robot")
+    private UUID activeRobot;
 
 }

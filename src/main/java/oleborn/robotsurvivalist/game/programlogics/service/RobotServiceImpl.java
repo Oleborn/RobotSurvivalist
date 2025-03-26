@@ -27,11 +27,13 @@ public class RobotServiceImpl implements RobotService {
     }
 
     @Override
+    @Transactional
     public List<RobotEntityDto> loadRobotsForOperator(Update update) {
         return robotMapper.toDtos(repository.findByOperatorId(UtilsMethods.searchId(update)));
     }
 
     @Override
+    @Transactional
     public RobotEntityDto findRobotByUUID(UUID uuid) {
         return robotMapper.toDto(repository.findById(uuid).orElse(null));
     }
@@ -52,8 +54,17 @@ public class RobotServiceImpl implements RobotService {
     }
 
     @Transactional
-    public RobotEntityDto createDefaultRobot(Update update) {
-        return new RobotEntityDto(
+    public void saveDefaultRobot(Update update) {
+        int sumWeight = sumWeight(ControlCenter.DEFAULT, CommunicationAntenna.DEFAULT, Engine.DEFAULT_ENGINE, CargoCompartment.DEFAULT,
+                FuelTanks.DEFAULT_FUEL_TANKS, 50, 0);
+
+        int sumCapacity = sumCapacity(ControlCenter.DEFAULT, CommunicationAntenna.DEFAULT, Engine.DEFAULT_ENGINE, CargoCompartment.DEFAULT,
+                FuelTanks.DEFAULT_FUEL_TANKS);
+
+        int sumDurability = sumDurability(ControlCenter.DEFAULT, CommunicationAntenna.DEFAULT, Engine.DEFAULT_ENGINE, CargoCompartment.DEFAULT,
+                FuelTanks.DEFAULT_FUEL_TANKS, Chassis.DEFAULT_WHEELS_CHASSIS);
+
+        saveRobot(new RobotEntityDto(
                         null,
                         update.getCallbackQuery().getFrom().getId(),
                         "Default", //сделать норм имя и описание
@@ -62,23 +73,23 @@ public class RobotServiceImpl implements RobotService {
                         ZonedDateTime.now(),
                         0,
                         0,
-                        sumWeight(ControlCenter.DEFAULT, CommunicationAntenna.DEFAULT, Engine.DEFAULT_ENGINE,CargoCompartment.DEFAULT,
-                                FuelTanks.DEFAULT_FUEL_TANKS, 50, 0),
-                        sumCapacity(ControlCenter.DEFAULT, CommunicationAntenna.DEFAULT, Engine.DEFAULT_ENGINE,CargoCompartment.DEFAULT,
-                                FuelTanks.DEFAULT_FUEL_TANKS),
-                        sumDurability(ControlCenter.DEFAULT, CommunicationAntenna.DEFAULT, Engine.DEFAULT_ENGINE,CargoCompartment.DEFAULT,
-                                FuelTanks.DEFAULT_FUEL_TANKS, Chassis.DEFAULT_WHEELS_CHASSIS),
+                        sumWeight,
+                        sumCapacity,
+                        sumDurability,
                         50,
+                        sumDurability,
+                        0,
                         ControlCenter.DEFAULT,
-                CommunicationAntenna.DEFAULT,
-                Engine.DEFAULT_ENGINE,
-                CargoCompartment.DEFAULT,
-                Chassis.DEFAULT_WHEELS_CHASSIS,
-                FuelTanks.DEFAULT_FUEL_TANKS,
-                List.of(MainCarriageModules.DEFAULT_MANIPULATOR),
-                List.of(),
-                1
-                );
+                        CommunicationAntenna.DEFAULT,
+                        Engine.DEFAULT_ENGINE,
+                        CargoCompartment.DEFAULT,
+                        Chassis.DEFAULT_WHEELS_CHASSIS,
+                        FuelTanks.DEFAULT_FUEL_TANKS,
+                        List.of(MainCarriageModules.DEFAULT_MANIPULATOR),
+                        List.of(),
+                        1
+                )
+        );
     }
 
     private int sumWeight(
@@ -89,14 +100,14 @@ public class RobotServiceImpl implements RobotService {
             FuelTanks fuelTanks,
             int quantityFuel,
             int massStorage
-            ) {
+    ) {
         return controlCenter.getMass()
-               +communicationAntenna.getMass()
-                +engine.getMass()
-                +compartment.getWeightWithoutLoad()
-                +fuelTanks.getMassWithoutFuel()
-                +quantityFuel
-               +massStorage;
+               + communicationAntenna.getMass()
+               + engine.getMass()
+               + compartment.getWeightWithoutLoad()
+               + fuelTanks.getMassWithoutFuel()
+               + quantityFuel
+               + massStorage;
     }
 
     private int sumCapacity(ControlCenter controlCenter,
@@ -105,10 +116,10 @@ public class RobotServiceImpl implements RobotService {
                             CargoCompartment compartment,
                             FuelTanks fuelTanks) {
         return controlCenter.getOccupiedCapacity()
-                +communicationAntenna.getOccupiedCapacity()
-                +engine.getOccupiedCapacity()
-                +compartment.getOccupiedCapacity()
-               +fuelTanks.getOccupiedCapacity();
+               + communicationAntenna.getOccupiedCapacity()
+               + engine.getOccupiedCapacity()
+               + compartment.getOccupiedCapacity()
+               + fuelTanks.getOccupiedCapacity();
     }
 
     private int sumDurability(ControlCenter controlCenter,
@@ -118,11 +129,11 @@ public class RobotServiceImpl implements RobotService {
                               FuelTanks fuelTanks,
                               Chassis chassis) {
         return controlCenter.getDurability()
-               +communicationAntenna.getDurability()
-                +engine.getDurability()
-                +compartment.getDurability()
-                +fuelTanks.getDurability()
-                +chassis.getDurability();
+               + communicationAntenna.getDurability()
+               + engine.getDurability()
+               + compartment.getDurability()
+               + fuelTanks.getDurability()
+               + chassis.getDurability();
     }
 
 }

@@ -6,6 +6,7 @@ import oleborn.robotsurvivalist.game.gamedictionary.operatordictionary.OperatorM
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 public record OperatorDto(
@@ -17,7 +18,8 @@ public record OperatorDto(
         Long countMoney,
         List<RobotEntityDto> robots,
         List<Technology> researchTechnologies,
-        int reputation
+        int reputation,
+        UUID activeRobot
 ) {
 }
 

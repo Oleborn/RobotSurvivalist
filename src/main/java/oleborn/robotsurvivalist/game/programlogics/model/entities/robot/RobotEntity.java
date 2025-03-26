@@ -50,7 +50,10 @@ public class RobotEntity {
     private Integer sumWeight;
     private Integer sumCapacity;
     private Integer sumDurability;
-    private Integer countFuel;
+
+    private Integer currentFuel;
+    private Integer currentDurability;
+    private Integer currentMassStorage;
 
     //Модули
     @Enumerated(EnumType.STRING)

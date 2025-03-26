@@ -21,6 +21,6 @@ public interface RobotService {
 
     void saveRobot(RobotEntityDto robotEntityDto);
 
-    RobotEntityDto createDefaultRobot(Update update);
+    void saveDefaultRobot(Update update);
 
 }
