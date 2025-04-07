@@ -12,7 +12,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface OperatorMapper {
 
-
     OperatorDto toDto(Operator operator);
 
     Operator fromDto(OperatorDto operatorDto);

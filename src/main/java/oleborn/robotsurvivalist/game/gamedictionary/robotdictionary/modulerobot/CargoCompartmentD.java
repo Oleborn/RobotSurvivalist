@@ -6,7 +6,7 @@ import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdic
 
 @Getter
 @RequiredArgsConstructor
-public enum CargoCompartment {
+public enum CargoCompartmentD {
 
     DEFAULT(10,
             100,

@@ -2,13 +2,10 @@ package oleborn.robotsurvivalist.game.programlogics.model.entities.robot;
 
 import jakarta.persistence.*;
 import lombok.*;
-import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot.*;
-import oleborn.robotsurvivalist.game.programlogics.model.entities.map.CellMap;
-import oleborn.robotsurvivalist.game.programlogics.model.entities.operator.Operator;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.module.*;
 
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Setter
@@ -42,10 +39,10 @@ public class RobotEntity {
 
     //Текущие, изменяемые свойства
     @Column(name = "x_coord")
-    private Integer XCoordinate;
+    private Integer xCoordinate;
 
     @Column(name = "y_coord")
-    private Integer YCoordinate;
+    private Integer yCoordinate;
 
     private Integer sumWeight;
     private Integer sumCapacity;
@@ -56,36 +53,30 @@ public class RobotEntity {
     private Integer currentMassStorage;
 
     //Модули
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
     private ControlCenter controlCenter;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
     private CommunicationAntenna antenna;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
     private Engine engine;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
     private CargoCompartment compartment;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
     private Chassis chassis;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
     private FuelTanks fuelTanks;
 
     //Модули взаимодействия
-    @ElementCollection
-    @CollectionTable(name = "robot_main_carriage", joinColumns = @JoinColumn(name = "robot_uuid"))
-    @Column(name = "main_carriage_modules")
-    @Enumerated(EnumType.STRING)
-    private List<MainCarriageModules> mainCarriageModulesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "main_carriage.id")
+    private List<MainCarriage> mainCarriageModulesList;
 
-    @ElementCollection
-    @CollectionTable(name = "robot_auxiliary_carriage", joinColumns = @JoinColumn(name = "robot_uuid"))
-    @Column(name = "auxiliary_carriage_modules")
-    @Enumerated(EnumType.STRING)
-    private List<AuxiliaryCarriageModules> auxiliaryCarriageModulesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "auxiliary_carriage.id")
+    private List<AuxiliaryCarriage> auxiliaryCarriageModulesList;
 
     @Column(name = "cellmap_id")
     private Long cellMapId;

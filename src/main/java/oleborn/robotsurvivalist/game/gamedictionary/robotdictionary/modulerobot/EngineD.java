@@ -6,7 +6,7 @@ import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdic
 
 @Getter
 @RequiredArgsConstructor
-public enum Engine {
+public enum EngineD {
 
     DEFAULT_ENGINE(40,
             25,

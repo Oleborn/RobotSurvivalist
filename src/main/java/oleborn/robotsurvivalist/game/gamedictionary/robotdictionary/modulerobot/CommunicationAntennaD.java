@@ -6,7 +6,7 @@ import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdic
 
 @Getter
 @RequiredArgsConstructor
-public enum CommunicationAntenna {
+public enum CommunicationAntennaD {
 
     DEFAULT(10,
             10,

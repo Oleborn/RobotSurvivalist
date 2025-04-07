@@ -6,7 +6,7 @@ import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdic
 
 @Getter
 @RequiredArgsConstructor
-public enum FuelTanks {
+public enum FuelTanksD {
 
     DEFAULT_FUEL_TANKS(20,
             50,

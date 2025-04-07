@@ -6,7 +6,7 @@ import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdic
 
 @Getter
 @RequiredArgsConstructor
-public enum Chassis {
+public enum ChassisD {
 
     DEFAULT_WHEELS_CHASSIS(
             200,

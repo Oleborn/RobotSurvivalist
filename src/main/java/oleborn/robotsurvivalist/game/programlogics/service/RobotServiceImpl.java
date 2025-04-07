@@ -55,14 +55,14 @@ public class RobotServiceImpl implements RobotService {
 
     @Transactional
     public void saveDefaultRobot(Update update) {
-        int sumWeight = sumWeight(ControlCenter.DEFAULT, CommunicationAntenna.DEFAULT, Engine.DEFAULT_ENGINE, CargoCompartment.DEFAULT,
-                FuelTanks.DEFAULT_FUEL_TANKS, 50, 0);
+        int sumWeight = sumWeight(ControlCenterD.DEFAULT, CommunicationAntennaD.DEFAULT, EngineD.DEFAULT_ENGINE, CargoCompartmentD.DEFAULT,
+                FuelTanksD.DEFAULT_FUEL_TANKS, 50, 0);
 
-        int sumCapacity = sumCapacity(ControlCenter.DEFAULT, CommunicationAntenna.DEFAULT, Engine.DEFAULT_ENGINE, CargoCompartment.DEFAULT,
-                FuelTanks.DEFAULT_FUEL_TANKS);
+        int sumCapacity = sumCapacity(ControlCenterD.DEFAULT, CommunicationAntennaD.DEFAULT, EngineD.DEFAULT_ENGINE, CargoCompartmentD.DEFAULT,
+                FuelTanksD.DEFAULT_FUEL_TANKS);
 
-        int sumDurability = sumDurability(ControlCenter.DEFAULT, CommunicationAntenna.DEFAULT, Engine.DEFAULT_ENGINE, CargoCompartment.DEFAULT,
-                FuelTanks.DEFAULT_FUEL_TANKS, Chassis.DEFAULT_WHEELS_CHASSIS);
+        int sumDurability = sumDurability(ControlCenterD.DEFAULT, CommunicationAntennaD.DEFAULT, EngineD.DEFAULT_ENGINE, CargoCompartmentD.DEFAULT,
+                FuelTanksD.DEFAULT_FUEL_TANKS, ChassisD.DEFAULT_WHEELS_CHASSIS);
 
         saveRobot(new RobotEntityDto(
                         null,
@@ -79,12 +79,12 @@ public class RobotServiceImpl implements RobotService {
                         50,
                         sumDurability,
                         0,
-                        ControlCenter.DEFAULT,
-                        CommunicationAntenna.DEFAULT,
-                        Engine.DEFAULT_ENGINE,
-                        CargoCompartment.DEFAULT,
-                        Chassis.DEFAULT_WHEELS_CHASSIS,
-                        FuelTanks.DEFAULT_FUEL_TANKS,
+                        ControlCenterD.DEFAULT,
+                        CommunicationAntennaD.DEFAULT,
+                        EngineD.DEFAULT_ENGINE,
+                        CargoCompartmentD.DEFAULT,
+                        ChassisD.DEFAULT_WHEELS_CHASSIS,
+                        FuelTanksD.DEFAULT_FUEL_TANKS,
                         List.of(MainCarriageModules.DEFAULT_MANIPULATOR),
                         List.of(),
                         1
@@ -93,11 +93,13 @@ public class RobotServiceImpl implements RobotService {
     }
 
     private int sumWeight(
-            ControlCenter controlCenter,
-            CommunicationAntenna communicationAntenna,
-            Engine engine,
-            CargoCompartment compartment,
-            FuelTanks fuelTanks,
+
+
+            ControlCenterD controlCenter,
+            CommunicationAntennaD communicationAntenna,
+            EngineD engine,
+            CargoCompartmentD compartment,
+            FuelTanksD fuelTanks,
             int quantityFuel,
             int massStorage
     ) {
@@ -110,11 +112,11 @@ public class RobotServiceImpl implements RobotService {
                + massStorage;
     }
 
-    private int sumCapacity(ControlCenter controlCenter,
-                            CommunicationAntenna communicationAntenna,
-                            Engine engine,
-                            CargoCompartment compartment,
-                            FuelTanks fuelTanks) {
+    private int sumCapacity(ControlCenterD controlCenter,
+                            CommunicationAntennaD communicationAntenna,
+                            EngineD engine,
+                            CargoCompartmentD compartment,
+                            FuelTanksD fuelTanks) {
         return controlCenter.getOccupiedCapacity()
                + communicationAntenna.getOccupiedCapacity()
                + engine.getOccupiedCapacity()
@@ -122,12 +124,12 @@ public class RobotServiceImpl implements RobotService {
                + fuelTanks.getOccupiedCapacity();
     }
 
-    private int sumDurability(ControlCenter controlCenter,
-                              CommunicationAntenna communicationAntenna,
-                              Engine engine,
-                              CargoCompartment compartment,
-                              FuelTanks fuelTanks,
-                              Chassis chassis) {
+    private int sumDurability(ControlCenterD controlCenter,
+                              CommunicationAntennaD communicationAntenna,
+                              EngineD engine,
+                              CargoCompartmentD compartment,
+                              FuelTanksD fuelTanks,
+                              ChassisD chassis) {
         return controlCenter.getDurability()
                + communicationAntenna.getDurability()
                + engine.getDurability()

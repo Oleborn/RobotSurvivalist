@@ -1,6 +1,7 @@
 package oleborn.robotsurvivalist.bot.updatehandler.callbackmethods.actionrobot;
 
 import lombok.RequiredArgsConstructor;
+import oleborn.robotsurvivalist.bot.outputMethods.InlineKeyboardBuilder;
 import oleborn.robotsurvivalist.bot.outputMethods.OutputsMethods;
 import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.robotconsole.ConsoleRobot;
 import oleborn.robotsurvivalist.game.programlogics.model.dto.RobotEntityDto;
@@ -8,6 +9,7 @@ import oleborn.robotsurvivalist.game.programlogics.service.OperatorService;
 import oleborn.robotsurvivalist.game.programlogics.service.RobotService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 import java.util.List;
 import java.util.UUID;
@@ -46,7 +48,9 @@ public class ActionRobotCommands {
                         robot.currentFuel(), robot.fuelTanks().getFuelCapacity(),
                         robot.currentDurability(), robot.sumDurability(),
                         robot.currentMassStorage(), robot.compartment().getOccupiedCapacity()
-                )
+                )+
+                ConsoleRobot.CONSOLE_COMMANDS.getText(),
+                ConsoleRobot.createCommandToMoved(robot.XCoordinate(), robot.YCoordinate())
         );
 
     }

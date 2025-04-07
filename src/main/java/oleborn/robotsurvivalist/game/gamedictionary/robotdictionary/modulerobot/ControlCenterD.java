@@ -6,7 +6,7 @@ import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdic
 
 @Getter
 @RequiredArgsConstructor
-public enum ControlCenter {
+public enum ControlCenterD {
 
     DEFAULT(20,
             10,

@@ -35,36 +35,44 @@ public class CommandHandler implements Handler {
     @Override
     @SneakyThrows
     public void handleUpdate(Update update) {
-        if (update.getMessage().getText().equals("/start")) {
-            Optional<Operator> byId = operatorService.findById(update);
 
-            if (byId.isEmpty()) {
+        switch (update.getMessage().getText()){
+            case "/start" -> {
+                Optional<Operator> byId = operatorService.findById(update);
+
+                if (byId.isEmpty()) {
+                    outputsMethods.outputMessage(
+                            UtilsMethods.searchId(update),
+                            CentralHistoryGame.START_GAME_HISTORY.getText(),
+                            CentralHistoryGame.START_GAME_HISTORY.getKeyboard()
+                    );
+                }else {
+                    returnMessageToPosition(byId.get());
+                }
+            }
+            case "/my_robots" -> {
+                if (robotService.loadRobotsForOperator(update).isEmpty()) {
+                    robotService.saveDefaultRobot(update);
+                }
+
+                List<RobotEntityDto> robotEntityDtosAfter = robotService.loadRobotsForOperator(update);
+
                 outputsMethods.outputMessage(
                         UtilsMethods.searchId(update),
-                        CentralHistoryGame.START_GAME_HISTORY.getText(),
-                        CentralHistoryGame.START_GAME_HISTORY.getKeyboard()
+                        ConsoleRobot.CHOOSING_A_ROBOT_1D.getText().formatted(robotEntityDtosAfter.size()),
+                        outputsMethods.createButtonInColumnToRobotEntityDto(
+                                robotEntityDtosAfter,
+                                "Робот модели: ",
+                                "robot_model"
+                        )
                 );
-            }else {
-                returnMessageToPosition(byId.get());
             }
-        }
-
-        if (update.getMessage().getText().equals("/my_robots")) {
-            if (robotService.loadRobotsForOperator(update).isEmpty()) {
-                robotService.saveDefaultRobot(update);
+            case "/scanning" -> {
+                outputsMethods.outputMessage(
+                        UtilsMethods.searchId(update),
+                        "Пока в разработке. Не нажимай)"
+                );
             }
-
-            List<RobotEntityDto> robotEntityDtosAfter = robotService.loadRobotsForOperator(update);
-
-            outputsMethods.outputMessage(
-                    UtilsMethods.searchId(update),
-                    ConsoleRobot.CHOOSING_A_ROBOT_1D.getText().formatted(robotEntityDtosAfter.size()),
-                    outputsMethods.createButtonInColumnToRobotEntityDto(
-                            robotEntityDtosAfter,
-                            "Робот модели: ",
-                            "robot_model"
-                    )
-            );
         }
     }
 
@@ -98,7 +106,6 @@ public class CommandHandler implements Handler {
                         WarehouseDictionary.DESCRIPTION_1.getButtons()
                 );
             }
-            case IN_WORKSHOP -> {}
             case IN_SCIENTIST -> {
                 outputsMethods.outputMessage(
                         operator.getId(),
@@ -106,7 +113,6 @@ public class CommandHandler implements Handler {
                         ScientistsRoomDictionary.DESCRIPTION_1.getButtons()
                 );
             }
-            case IN_WAREHOUSE -> {}
             case IN_MANUFACTURE -> {
                 outputsMethods.outputMessage(
                         operator.getId(),
