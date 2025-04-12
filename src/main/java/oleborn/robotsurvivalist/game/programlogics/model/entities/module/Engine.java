@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.module.originalmodules.ProjectEngine;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.robot.RobotEntity;
 
 import java.util.UUID;
 
@@ -14,16 +16,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "engins")
-public class Engine {
+public class Engine extends ProjectEngine {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    private Integer mass;
-    private Integer durability;
-    private Integer occupiedCapacity;
-    private Integer price;
-    private Double speed;
-    private Integer fuelConsumption;
-    private String description;
+    @OneToOne(mappedBy = "engine")
+    private RobotEntity robot;
 }

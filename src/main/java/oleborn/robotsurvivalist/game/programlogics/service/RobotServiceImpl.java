@@ -64,32 +64,9 @@ public class RobotServiceImpl implements RobotService {
         int sumDurability = sumDurability(ControlCenterD.DEFAULT, CommunicationAntennaD.DEFAULT, EngineD.DEFAULT_ENGINE, CargoCompartmentD.DEFAULT,
                 FuelTanksD.DEFAULT_FUEL_TANKS, ChassisD.DEFAULT_WHEELS_CHASSIS);
 
-        saveRobot(new RobotEntityDto(
-                        null,
-                        update.getCallbackQuery().getFrom().getId(),
-                        "Default", //сделать норм имя и описание
-                        "Default",
-                        ZonedDateTime.now(),
-                        ZonedDateTime.now(),
-                        0,
-                        0,
-                        sumWeight,
-                        sumCapacity,
-                        sumDurability,
-                        50,
-                        sumDurability,
-                        0,
-                        ControlCenterD.DEFAULT,
-                        CommunicationAntennaD.DEFAULT,
-                        EngineD.DEFAULT_ENGINE,
-                        CargoCompartmentD.DEFAULT,
-                        ChassisD.DEFAULT_WHEELS_CHASSIS,
-                        FuelTanksD.DEFAULT_FUEL_TANKS,
-                        List.of(MainCarriageModules.DEFAULT_MANIPULATOR),
-                        List.of(),
-                        1
-                )
-        );
+
+        //засетить загрузку дефолтного робота
+        saveRobot(RobotEntityDto.builder().build());
     }
 
     private int sumWeight(

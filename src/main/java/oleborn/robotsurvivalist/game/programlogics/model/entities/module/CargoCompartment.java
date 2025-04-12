@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.module.originalmodules.ProjectCargoCompartment;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.robot.RobotEntity;
 
 import java.util.UUID;
 
@@ -14,17 +16,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "cargo_compartments")
-public class CargoCompartment {
+public class CargoCompartment extends ProjectCargoCompartment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    private Integer weightWithoutLoad;
-    private Integer maximumLadenWeight;
-    private Integer durability;
-    private Integer occupiedCapacity;
-    private Integer capacity;
-    private Integer price;
-    private String description;
+    @OneToOne(mappedBy = "compartment")
+    private RobotEntity robot;
 
 }

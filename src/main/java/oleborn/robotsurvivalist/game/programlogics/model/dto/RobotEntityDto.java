@@ -1,13 +1,13 @@
 package oleborn.robotsurvivalist.game.programlogics.model.dto;
 
 import lombok.Builder;
-import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot.*;
+import oleborn.robotsurvivalist.game.programlogics.model.dto.innerdto.*;
 
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Builder
+@Builder(toBuilder = true)
 public record RobotEntityDto(
         UUID uuid,
         long operatorId,
@@ -23,14 +23,18 @@ public record RobotEntityDto(
         int currentFuel,
         int currentDurability,
         int currentMassStorage,
-        ControlCenterD controlCenter,
-        CommunicationAntennaD antenna,
-        EngineD engine,
-        CargoCompartmentD compartment,
-        ChassisD chassis,
-        FuelTanksD fuelTanks,
-        List<MainCarriageModules> mainCarriageModulesList,
-        List<AuxiliaryCarriageModules> auxiliaryCarriageModulesList,
+        ControlCenterDto controlCenter,
+        CommunicationAntennaDto antenna,
+        EngineDto engine,
+        CargoCompartmentDto compartment,
+        ChassisDto chassis,
+        FuelTanksDto fuelTanks,
+
+        List<OffensiveEquipmentDto> offensiveEquipmentList,
+        List<AuxiliaryEquipmentDto> auxiliaryEquipmentList,
+        List<MiningEquipmentDto> miningEquipmentList,
+        List<DefenseEquipmentDto> defenseEquipmentList,
+
         long cellMapId
 ) {
 }

@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.UUID;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.module.originalmodules.ProjectCommunicationAntenna;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.robot.RobotEntity;
 
 @Setter
 @Getter
@@ -14,16 +14,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "antenna")
-public class CommunicationAntenna {
+public class CommunicationAntenna extends ProjectCommunicationAntenna {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    private Integer mass;
-    private Integer durability;
-    private Integer occupiedCapacity;
-    private Integer price;
-    private Integer communicationRange;
-    private String description;
+    @OneToOne(mappedBy = "antenna")
+    private RobotEntity robot;
 
 }

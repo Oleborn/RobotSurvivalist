@@ -3,6 +3,7 @@ package oleborn.robotsurvivalist.game.programlogics.model.entities.robot;
 import jakarta.persistence.*;
 import lombok.*;
 import oleborn.robotsurvivalist.game.programlogics.model.entities.module.*;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.module.MiningEquipment;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -22,6 +23,7 @@ public class RobotEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 
+    @Column(name = "operator_id")
     private Long operatorId;
 
     @Column(name = "name_model")
@@ -53,30 +55,36 @@ public class RobotEntity {
     private Integer currentMassStorage;
 
     //Модули
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "robot")
     private ControlCenter controlCenter;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "robot")
     private CommunicationAntenna antenna;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "robot")
     private Engine engine;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "robot")
     private CargoCompartment compartment;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "robot")
     private Chassis chassis;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "robot")
     private FuelTanks fuelTanks;
 
     //Модули взаимодействия
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "main_carriage.id")
-    private List<MainCarriage> mainCarriageModulesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "robot")
+    private List<OffensiveEquipment> offensiveEquipmentList;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "auxiliary_carriage.id")
-    private List<AuxiliaryCarriage> auxiliaryCarriageModulesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "robot")
+    private List<AuxiliaryEquipment> auxiliaryEquipmentList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "robot")
+    private List<MiningEquipment> miningEquipmentList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "robot")
+    private List<DefenseEquipment> defenseEquipmentList;
 
     @Column(name = "cellmap_id")
     private Long cellMapId;

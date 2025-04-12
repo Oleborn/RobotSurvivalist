@@ -5,8 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.module.originalmodules.ProjectChassis;
+import oleborn.robotsurvivalist.game.programlogics.model.entities.robot.RobotEntity;
 
-import java.util.UUID;
 
 @Setter
 @Getter
@@ -14,19 +15,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "chassis")
-public class Chassis {
+public class Chassis extends ProjectChassis {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    private Integer supportedWeight;
-    private Integer durability;
-    private Integer occupiedCapacity;
-    private Double maxSpeed;
-    private Boolean abilityToFloat;
-    private Integer countOfMainCarriages;
-    private Integer countOfAuxiliaryCarriages;
-    private Integer price;
-    private String description;
+    @OneToOne(mappedBy = "chassis")
+    private RobotEntity robot;
 
 }
