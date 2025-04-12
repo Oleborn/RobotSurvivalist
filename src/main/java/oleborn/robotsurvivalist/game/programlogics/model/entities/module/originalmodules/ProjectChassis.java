@@ -22,7 +22,7 @@ public class ProjectChassis extends ParentModule {
 
     //максимальная скорость
     @Column(name = "max_speed")
-    private Double maxSpeed;
+    private Integer maxSpeed;
 
     //возможность плавать
     @Column(name = "ability_to_float")

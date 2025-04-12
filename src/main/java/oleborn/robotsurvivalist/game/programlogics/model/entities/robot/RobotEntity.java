@@ -20,17 +20,13 @@ public class RobotEntity {
 
     // Персонализация
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 
     @Column(name = "operator_id")
     private Long operatorId;
 
-    @Column(name = "name_model")
-    private String nameModel;
-
-    @Column(name = "description")
-    private String descriptionModel;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "creation_date")
     private ZonedDateTime creationDate;

@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DescriptionChassis {
 
-    DEFAULT_WHEELS_CHASSIS("""
+    DEFAULT_WHEELS_CHASSIS(
+            "Default",
+           """
            Стандартное колесное шасси начального уровня, из стартового набора любого робота. Ничего не стоит. 
             
            Характеристики:
@@ -20,6 +22,7 @@ public enum DescriptionChassis {
                 - Количество вспомогательных лафетов - 0
             """);
 
+    private final String name;
     private final String description;
 
 }

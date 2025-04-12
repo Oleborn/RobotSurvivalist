@@ -34,13 +34,13 @@ public class ActionRobotCommands {
         RobotEntityDto robot = robotService.findRobotByUUID(UUID.fromString(uuid));
         outputsMethods.outputMessage(
                 id,
-                ConsoleRobot.START_CONSOLE_MSG_1S.getText().formatted(robot.nameModel())
+                ConsoleRobot.START_CONSOLE_MSG_1S.getText().formatted(robot.name())
         );
 
         outputsMethods.outputMessage(
                 id,
                 ConsoleRobot.CONSOLE_1S_8D.getText().formatted(
-                        robot.nameModel(),
+                        robot.name(),
                         robot.XCoordinate(), robot.YCoordinate(),
                         robot.currentFuel(), robot.fuelTanks().fuelCapacity(),
                         robot.currentDurability(), robot.sumDurability(),

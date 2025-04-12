@@ -3,7 +3,10 @@ package oleborn.robotsurvivalist.game.programlogics.repository.projectsmodules;
 import oleborn.robotsurvivalist.game.programlogics.model.entities.module.originalmodules.ProjectChassis;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface ProjectChassisRepository extends JpaRepository<ProjectChassis, UUID> {
+
+    Optional<ProjectChassis> findByModel(String model);
 }

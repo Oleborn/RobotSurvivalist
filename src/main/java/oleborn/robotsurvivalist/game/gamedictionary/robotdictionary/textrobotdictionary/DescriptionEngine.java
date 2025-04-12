@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DescriptionEngine {
 
-    DEFAULT_ENGINE("""
+    DEFAULT_ENGINE(
+            "Default",
+            """
             Стандартная двигатель начального уровня, из стартового набора любого робота. Ничего не стоит. 
             Позволяет преодолеть клетку карты за 5 минут.
             
@@ -19,6 +21,7 @@ public enum DescriptionEngine {
                 - Расход топлива - 5 ед на клетку.
             """);
 
+    private final String name;
     private final String description;
 
 }

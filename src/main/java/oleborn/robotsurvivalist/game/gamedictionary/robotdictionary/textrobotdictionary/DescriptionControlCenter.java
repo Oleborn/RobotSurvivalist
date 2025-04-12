@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DescriptionControlCenter {
 
-    DEFAULT_CONTROL_CENTER("""
+    DEFAULT_CONTROL_CENTER(
+            "Default",
+            """
             Стандартный модуль управления начального уровня, из стартового набора любого робота. Ничего не стоит. 
             
             Характеристики:
@@ -17,6 +19,7 @@ public enum DescriptionControlCenter {
                 - Объем записываемых команд - 1 
             """);
 
+    private final String name;
     private final String description;
 
 }

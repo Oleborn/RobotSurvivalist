@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DescriptionCargoCompartment {
 
-    DEFAULT_CARGO_COMPARTMENT("""
+    DEFAULT_CARGO_COMPARTMENT(
+            "Default",
+            """
             Стандартный грузовой отсек начального уровня, из стартового набора любого робота. Ничего не стоит. 
 
             Характеристики:
@@ -18,6 +20,7 @@ public enum DescriptionCargoCompartment {
                 - Вместимость - 100 единиц объема
             """);
 
+    private final String name;
     private final String description;
 
 }

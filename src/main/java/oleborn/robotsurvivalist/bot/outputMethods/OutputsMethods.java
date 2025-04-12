@@ -194,7 +194,7 @@ public class OutputsMethods extends Bot {
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
         for (RobotEntityDto s : list) {
-            var next = createButtonMenuForInline(nameField + s.nameModel(), command + "_" + s.uuid());
+            var next = createButtonMenuForInline(nameField + s.name(), command + "_" + s.uuid());
             keyboard.add(List.of(next));
         }
         markup.setKeyboard(keyboard);

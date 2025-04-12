@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DescriptionFuelTanks {
 
-    DEFAULT_FUEL_TANKS("""
+    DEFAULT_FUEL_TANKS(
+            "Default",
+            """
             Стандартная модель баков для топлива начального уровня, из стартового набора любого робота. Ничего не стоит. 
             
             Характеристики:
@@ -17,6 +19,7 @@ public enum DescriptionFuelTanks {
                 - Занимаемый объем - 50 ед
             """);
 
+    private final String name;
     private final String description;
 
 }

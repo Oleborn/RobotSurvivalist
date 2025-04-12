@@ -3,14 +3,15 @@ package oleborn.robotsurvivalist.game.programlogics.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.modulerobot.*;
+import oleborn.robotsurvivalist.game.gamedictionary.robotdictionary.textrobotdictionary.DescriptionChassis;
 import oleborn.robotsurvivalist.game.programlogics.mapper.RobotMapper;
 import oleborn.robotsurvivalist.game.programlogics.model.dto.RobotEntityDto;
 import oleborn.robotsurvivalist.game.programlogics.repository.RobotRepository;
+import oleborn.robotsurvivalist.game.programlogics.service.moduleservice.instance.ChassisService;
 import oleborn.robotsurvivalist.utils.UtilsMethods;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ public class RobotServiceImpl implements RobotService {
 
     private final RobotRepository repository;
     private final RobotMapper robotMapper;
+    private final ChassisService chassisService;
 
     @Override
     public void createRobot(Update update, RobotEntityDto robotEntityDto) {
@@ -64,9 +66,13 @@ public class RobotServiceImpl implements RobotService {
         int sumDurability = sumDurability(ControlCenterD.DEFAULT, CommunicationAntennaD.DEFAULT, EngineD.DEFAULT_ENGINE, CargoCompartmentD.DEFAULT,
                 FuelTanksD.DEFAULT_FUEL_TANKS, ChassisD.DEFAULT_WHEELS_CHASSIS);
 
+        UUID defaultRobotUuid = UUID.randomUUID();
 
         //засетить загрузку дефолтного робота
-        saveRobot(RobotEntityDto.builder().build());
+        saveRobot(RobotEntityDto.builder()
+                .uuid(defaultRobotUuid)
+                .chassis(chassisService.setInRobot(DescriptionChassis.DEFAULT_WHEELS_CHASSIS.getName(), defaultRobotUuid))
+                .build());
     }
 
     private int sumWeight(

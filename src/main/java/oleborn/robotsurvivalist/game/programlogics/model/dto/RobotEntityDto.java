@@ -11,8 +11,7 @@ import java.util.UUID;
 public record RobotEntityDto(
         UUID uuid,
         long operatorId,
-        String nameModel,
-        String descriptionModel,
+        String name,
         ZonedDateTime creationDate,
         ZonedDateTime modificationDate,
         int XCoordinate,

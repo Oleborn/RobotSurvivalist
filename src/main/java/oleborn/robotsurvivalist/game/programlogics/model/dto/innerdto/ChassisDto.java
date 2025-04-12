@@ -18,14 +18,14 @@ public record ChassisDto(
         ZonedDateTime modificationDate,
 
         Integer supportedWeight,
-        Double maxSpeed,
+        Integer maxSpeed,
         Boolean abilityToFloat,
         Integer countOfMiningEquipment,
         Integer countOfAuxiliaryEquipment,
         Integer countOfDefenseEquipment,
         Integer countOfOffensiveEquipment,
 
-        RobotEntityDto robot
+        UUID robotId
 
 ) {
 }

@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DescriptionCommunicationAntenna {
 
-    DEFAULT_ANTENNA("""
+    DEFAULT_ANTENNA(
+            "Default",
+            """
             Стандартная антенна начального уровня, из стартового набора любого робота. Ничего не стоит. 
             
             Характеристики:
@@ -17,6 +19,7 @@ public enum DescriptionCommunicationAntenna {
                 - Дальность связи - 3 клетки
             """);
 
+    private final String name;
     private final String description;
 
 }
