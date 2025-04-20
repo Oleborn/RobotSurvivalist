@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "project_mining_equipment")
+@Table(name = "project_defense_equipment")
 public class ProjectDefenseEquipment extends ParentModule {
 
     private int a;

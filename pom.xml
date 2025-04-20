@@ -30,7 +30,8 @@
     <properties>
         <java.version>21</java.version>
         <telegrambots.version>6.9.7.1</telegrambots.version>
-<!--        <mapstruct.version>1.5.5.Final</mapstruct.version>-->
+        <mapstruct.version>1.6.3</mapstruct.version>
+        <mapstruct-processor.version>1.6.3</mapstruct-processor.version>
         <lombok.version>1.18.36</lombok.version>
     </properties>
 
@@ -81,12 +82,12 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>1.6.3</version>
+            <version>${mapstruct.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
-            <version>1.6.3</version>
+            <version>${mapstruct-processor.version}</version>
         </dependency>
     </dependencies>
 
@@ -105,7 +106,7 @@
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
-                            <version>1.6.3</version>
+                            <version>${mapstruct-processor.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

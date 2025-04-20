@@ -12,7 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "project_mining_equipment")
+@Table(name = "project_offensive_equipment")
 public class ProjectOffensiveEquipment extends ParentModule {
-    private int a;
+
+    private Integer damage;
+
 }
+

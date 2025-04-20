@@ -15,5 +15,12 @@ import lombok.Setter;
 @Table(name = "project_mining_equipment")
 public class ProjectMiningEquipment extends ParentModule {
 
-    private int a;
+    private boolean minedOfMaterial;
+    private boolean minedOfMetal;
+    private boolean minedOfWater;
+
+    //скорость добычи ед объема в минуту
+    private Integer speedOfMiningMaterial;
+    private Integer speedOfMiningMetal;
+    private Integer speedOfMiningWater;
 }

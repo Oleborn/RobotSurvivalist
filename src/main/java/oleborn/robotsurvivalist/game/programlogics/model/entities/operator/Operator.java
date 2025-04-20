@@ -37,7 +37,7 @@ public class Operator {
     @Column(name = "money")
     private Long countMoney;
 
-    @OneToMany(mappedBy = "operatorId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "operatorId")
     private List<RobotEntity> robots;
 
     @ElementCollection
